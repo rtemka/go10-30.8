@@ -17,6 +17,8 @@ type taskStorage interface {
 	UpdateTaskById(id int, t storage.Task) error
 
 	DeleteTaskById(id int) error
+
+	Close()
 }
 
 func main() {
@@ -37,6 +39,7 @@ func main() {
 		log.Printf("while establishing database connection [%v]\n", err)
 		os.Exit(1)
 	}
+	defer db.Close()
 
 	tasks, err := db.ReadAllTasks()
 	if err != nil {

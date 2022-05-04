@@ -39,6 +39,10 @@ func NewStorage(connString string) (*Storage, error) {
 	return &Storage{db: pool}, nil
 }
 
+func (s *Storage) Close() {
+	s.db.Close()
+}
+
 // CreateTasks пакетно создает задачи в БД
 func (s *Storage) CreateTasks(tasks []Task) error {
 	tx, err := s.db.Begin(context.Background())

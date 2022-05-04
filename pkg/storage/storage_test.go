@@ -28,6 +28,8 @@ func TestMain(m *testing.M) {
 		log.Fatal(err)
 	}
 
+	defer db.Close()
+
 	os.Exit(exitCode)
 }
 

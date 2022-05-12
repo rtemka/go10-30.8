@@ -25,10 +25,11 @@ func TestMain(m *testing.M) {
 
 	err = db.testCleanUp()
 	if err != nil {
+		db.Close()
 		log.Fatal(err)
 	}
 
-	defer db.Close()
+	db.Close()
 
 	os.Exit(exitCode)
 }
